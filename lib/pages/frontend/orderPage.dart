@@ -146,7 +146,7 @@ class _MyWidgetState extends State<OrdersPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${order.area!.mine!.name} (${order.orderNumber.toString()})",
+                                "${order.mine!.name} (${order.id.toString()})",
                               ),
                               Text(order.createdAt.toString())
                             ],
@@ -154,7 +154,7 @@ class _MyWidgetState extends State<OrdersPage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(order.area!.name.toString()),
+                              Text(order.skvajina.toString()),
                               Text(
                                 statusData[order.status.toString()].toString(),
                                 style: const TextStyle(color: Colors.green),

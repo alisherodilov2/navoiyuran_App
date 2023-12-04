@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: isAuth ? 'password_page' : 'login_screen',

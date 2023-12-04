@@ -3,31 +3,33 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/Api/BaseApi.dart';
 
-Future<List<qrCodeShow>> fetchOrders(id) async {
+Future<List<qrCodeShow>> fetchQrData(id) async {
   SharedPreferences localStorage = await SharedPreferences.getInstance();
   var token = localStorage.getString("token");
+
   var response = await http.get(headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Authorization': 'Bearer $token',
-  }, Uri.parse(SubApi.labaratory));
+  }, Uri.parse(SubApi.orderShow + id));
   return (jsonDecode(response.body) as List)
       .map((e) => qrCodeShow.fromJson(e))
       .toList();
 }
 
-
 class qrCodeShow {
   int? samplePart;
   SampleGroup? sampleGroup;
+  String? createAt;
 
-  qrCodeShow({this.samplePart, this.sampleGroup});
+  qrCodeShow({this.samplePart, this.sampleGroup, this.createAt});
 
   qrCodeShow.fromJson(Map<String, dynamic> json) {
     samplePart = json['samplePart'];
     sampleGroup = json['sampleGroup'] != null
         ? new SampleGroup.fromJson(json['sampleGroup'])
         : null;
+    createAt = json['createAt'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +38,7 @@ class qrCodeShow {
     if (this.sampleGroup != null) {
       data['sampleGroup'] = this.sampleGroup!.toJson();
     }
+    data['createAt'] = this.createAt;
     return data;
   }
 }
@@ -44,14 +47,16 @@ class SampleGroup {
   String? status;
   Order? order;
   Analiz? analiz;
+  String? analizType;
 
-  SampleGroup({this.status, this.order, this.analiz});
+  SampleGroup({this.status, this.order, this.analiz, this.analizType});
 
   SampleGroup.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     order = json['order'] != null ? new Order.fromJson(json['order']) : null;
     analiz =
         json['analiz'] != null ? new Analiz.fromJson(json['analiz']) : null;
+    analizType = json['analiz_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,6 +68,7 @@ class SampleGroup {
     if (this.analiz != null) {
       data['analiz'] = this.analiz!.toJson();
     }
+    data['analiz_type'] = this.analizType;
     return data;
   }
 }
@@ -73,13 +79,15 @@ class Order {
   SomeType? someType;
   Area? area;
   String? samplesCount;
+  List<Samples>? samples;
 
   Order(
       {this.order,
       this.orderNumber,
       this.someType,
       this.area,
-      this.samplesCount});
+      this.samplesCount,
+      this.samples});
 
   Order.fromJson(Map<String, dynamic> json) {
     order = json['order'];
@@ -89,6 +97,12 @@ class Order {
         : null;
     area = json['area'] != null ? new Area.fromJson(json['area']) : null;
     samplesCount = json['samplesCount'];
+    if (json['samples'] != null) {
+      samples = <Samples>[];
+      json['samples'].forEach((v) {
+        samples!.add(new Samples.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -102,6 +116,9 @@ class Order {
       data['area'] = this.area!.toJson();
     }
     data['samplesCount'] = this.samplesCount;
+    if (this.samples != null) {
+      data['samples'] = this.samples!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -204,6 +221,79 @@ class Area {
     data['district_id'] = this.districtId;
     data['customer_id'] = this.customerId;
     data['mine_id'] = this.mineId;
+    return data;
+  }
+}
+
+class Samples {
+  int? id;
+  Null? idCopy;
+  Null? status;
+  String? unicNumber;
+  String? depthFrom;
+  String? depthTo;
+  String? power;
+  String? weightFrom;
+  String? weightTo;
+  int? materialTypeId;
+  int? breedId;
+  int? orderId;
+  String? createdAt;
+  String? updatedAt;
+  Null? deletedAt;
+
+  Samples(
+      {this.id,
+      this.idCopy,
+      this.status,
+      this.unicNumber,
+      this.depthFrom,
+      this.depthTo,
+      this.power,
+      this.weightFrom,
+      this.weightTo,
+      this.materialTypeId,
+      this.breedId,
+      this.orderId,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt});
+
+  Samples.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    idCopy = json['id_copy'];
+    status = json['status'];
+    unicNumber = json['unic_number'];
+    depthFrom = json['depth_from'];
+    depthTo = json['depth_to'];
+    power = json['power'];
+    weightFrom = json['weight_from'];
+    weightTo = json['weight_to'];
+    materialTypeId = json['material_type_id'];
+    breedId = json['breed_id'];
+    orderId = json['order_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['id_copy'] = this.idCopy;
+    data['status'] = this.status;
+    data['unic_number'] = this.unicNumber;
+    data['depth_from'] = this.depthFrom;
+    data['depth_to'] = this.depthTo;
+    data['power'] = this.power;
+    data['weight_from'] = this.weightFrom;
+    data['weight_to'] = this.weightTo;
+    data['material_type_id'] = this.materialTypeId;
+    data['breed_id'] = this.breedId;
+    data['order_id'] = this.orderId;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['deleted_at'] = this.deletedAt;
     return data;
   }
 }

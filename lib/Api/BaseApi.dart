@@ -1,5 +1,5 @@
 class BaseApi {
-  static String api = "http://192.168.0.105:8000";
+  static String api = "https://lab.works.uz";
 }
 
 class Auth extends BaseApi {

@@ -62,7 +62,14 @@ class _QRViewExampleState extends State<QRViewExample> {
                       ' Data: ${result!.code}',
                     )
                   else
-                    const Text('Scan a code'),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        const Text('Scan a code'),
+                      ],
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,6 +77,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: StadiumBorder(),
+                          ),
                           onPressed: () async {
                             await controller?.toggleFlash();
                             setState(() {});
@@ -77,7 +87,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                           child: FutureBuilder(
                             future: controller?.getFlashStatus(),
                             builder: (context, snapshot) {
-                              return Text('Flash: ${snapshot.data}');
+                              return Icon(Icons.flash_auto_outlined);
                             },
                           ),
                         ),
@@ -85,6 +95,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: StadiumBorder(),
+                          ),
                           onPressed: () async {
                             await controller?.flipCamera();
                             setState(() {});
@@ -92,16 +105,25 @@ class _QRViewExampleState extends State<QRViewExample> {
                           child: FutureBuilder(
                             future: controller?.getCameraInfo(),
                             builder: (context, snapshot) {
-                              if (snapshot.data != null) {
-                                return Text(
-                                    'Camera facing ${describeEnum(snapshot.data!)}');
-                              } else {
-                                return const Text('loading');
-                              }
+                              return Icon(Icons.flip_camera_ios);
                             },
                           ),
                         ),
-                      )
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: StadiumBorder(),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
