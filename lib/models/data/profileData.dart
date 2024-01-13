@@ -35,6 +35,7 @@ var profileData = [
   },
   {
     'icon': Icons.settings,
-    'title': "Sozlamalar",
+    'title': "sozlamalar",
+    "route": 'settings',
   }
 ];

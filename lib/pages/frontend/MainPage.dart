@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/models/orderModels.dart';
 import 'package:test/pages/frontend/Lab/labatories.dart';
+import 'package:test/pages/frontend/LeadingPage.dart';
 import 'package:test/pages/frontend/orderPage.dart';
 import 'package:test/pages/frontend/profilePage.dart';
 
@@ -17,7 +15,12 @@ class LeadingPage extends StatefulWidget {
 class _LeadingPageState extends State<LeadingPage> {
   late Future<List<Orders>> fetchOrder;
 
-  late List pages = [OrdersPage(), ProfilePage(), Labatories()];
+  late List pages = [
+    LeadingPageMain(),
+    ProfilePage(),
+    Labatories(),
+    OrdersPage(),
+  ];
   late dynamic pagemain = pages[0];
   late int selectedIndex = 0;
   void changePage(page) {
@@ -31,12 +34,12 @@ class _LeadingPageState extends State<LeadingPage> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background1.png"),
+          image: ExactAssetImage("assets/background1.png"),
           fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(244, 10, 224, 178),
         body: pagemain,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 113, 232, 210),
@@ -48,10 +51,7 @@ class _LeadingPageState extends State<LeadingPage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: ClipRRect(
           // ignore: prefer_const_constructors
-          borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(12),
-            topRight: const Radius.circular(12),
-          ),
+
           child: BottomAppBar(
             //bottom navigation bar on scaffold
             color: Colors.white,
@@ -78,7 +78,7 @@ class _LeadingPageState extends State<LeadingPage> {
                           ? const Color.fromARGB(255, 91, 91, 91)
                           : const Color.fromARGB(255, 91, 91, 91)),
                   onPressed: () {
-                    changePage(0);
+                    changePage(3);
                   },
                 ),
                 const SizedBox(

@@ -30,6 +30,8 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  void logout() async {}
+
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -110,31 +112,37 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: profileData.map((e) {
                               return Column(
                                 children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(20),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Icon(
-                                          e['icon'] as IconData?,
-                                          size: 18,
-                                        ),
-                                        Text(
-                                          "${e['title']}",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        if (e['route'] != null)
+                                  GestureDetector(
+                                    onTap: () => {
+                                      Navigator.pushNamed(
+                                          context, e['route'].toString())
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(25),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
                                           Icon(
-                                            Icons.arrow_forward_ios,
+                                            e['icon'] as IconData?,
                                             size: 18,
-                                          )
-                                        else
-                                          SizedBox(),
-                                      ],
+                                          ),
+                                          Text(
+                                            "${e['title']}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          if (e['route'] != null)
+                                            Icon(
+                                              Icons.arrow_forward_ios,
+                                              size: 18,
+                                            )
+                                          else
+                                            SizedBox(),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -153,9 +161,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       )
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 30,
                 ),
               ],
             ),

@@ -57,7 +57,6 @@ class _PasswordPageState extends State<PasswordPage> {
                 ),
                 onComplete: (String value) {
                   password = value;
-                 
                 },
               ),
               const SizedBox(
@@ -85,8 +84,10 @@ class _PasswordPageState extends State<PasswordPage> {
                     width: 60,
                   ),
                   IconButton(
-                    onPressed: () {
-                     
+                    onPressed: () async {
+                      SharedPreferences localStorage =
+                          await SharedPreferences.getInstance();
+                      localStorage.clear();
                     },
                     icon: const Icon(
                       Icons.fingerprint,
@@ -101,7 +102,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       SharedPreferences localStorage =
                           await SharedPreferences.getInstance();
                       var passwordmain = localStorage.getString("password");
-                     
+
                       if (passwordmain != null) {
                         if (passwordmain == password) {
                           Navigator.pushReplacementNamed(
@@ -127,10 +128,10 @@ class _PasswordPageState extends State<PasswordPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 10,
+                              width: 6,
                             ),
                             Text(
-                              "Next",
+                              "Keyingi",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(

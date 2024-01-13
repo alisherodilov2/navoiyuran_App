@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test/pages/frontend/LeadingPage.dart';
 
 import 'package:test/pages/frontend/MainPage.dart';
 import 'package:test/pages/frontend/qrCodeScanner.dart';
 import 'package:test/pages/languageChoose.dart';
 import 'package:test/pages/login.dart';
 import 'package:test/pages/passwordPage.dart';
+import 'package:test/pages/settings/settingsPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,16 +57,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: isAuth ? 'password_page' : 'login_screen',
       routes: {
-        'lang_scren': (context) => LanguagePage(),
-        'login_screen': (context) => LoginPage(),
-        'home_screen': (context) => LeadingPage(),
+        'main_homePage': (context) => const LeadingPageMain(),
+        'lang_scren': (context) => const LanguagePage(),
+        'login_screen': (context) => const LoginPage(),
+        'home_screen': (context) => const LeadingPage(),
         'password_page': (context) => PasswordPage(),
-        'qr_code': (context) => QRViewExample(),
+        'qr_code': (context) => const QRViewExample(),
+        'settings': (context) => const settingsPage(),
       },
     );
   }

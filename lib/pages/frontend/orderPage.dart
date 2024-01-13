@@ -11,28 +11,29 @@ class OrdersPage extends StatefulWidget {
 class _MyWidgetState extends State<OrdersPage> {
   late Future<List<Orders>> fetchOrder;
   var statusData = {
-    '0': 'yangi',
-    '1': 'namunalar tayyorlanmoqda',
-    '2': 'markirovkalanmoqda',
-    '3': 'buyurtma shakillantirishda',
-    '4': 'buyurtma yuborishga tayyor',
-    '20': 'Raxbar',
-    '21': 'Rad Etildi',
-    '22': 'Tasqidlandi',
-    '5': 'buyurtma yuborildi',
-    '6': 'buyurtma qaytarildi',
-    '7': 'buyurtma qabul qilindi',
-    '8': 'buyurtma omborda',
-    '9': 'buyurtma tadqiqotlarga chiqarildi',
-    '10': 'tadqiqotlarga chiqarildi',
-    '11': 'taqiqotlarga qabul qilindi',
-    '12': 'tadqiqotlar jarayonida',
-    '13': 'tadqiqotlar natijalari',
-    '14': 'natijalarni buyurtmachiga yuborish',
-    '15': 'natijalarni buyurtmachi qabul qildi',
-    '17': 'natijalarni buyurtmachi qabul qilmadi',
-    '18': 'natijalar arxivga yuborildi',
-    '19': 'arxivda saqlanyapti',
+    '10': 'yangi',
+    '20': 'namunalar tayyorlanmoqda',
+    '30': 'markirovkalanmoqda',
+    '40': 'buyurtma yuborishga tayyor',
+    '50': 'Bosh geologga yuborildi',
+    '60': 'Geolog rad etdi',
+    '70': 'Geolog tasqidladi',
+    '80': 'buyurtma yuborildi',
+    '90': 'buyurtma qaytarildi',
+    '100': 'buyurtma qabul qilindi',
+    '110': 'buyurtma omborda',
+    '120': 'buyurtma tadqiqotlarga chiqarildi',
+    '130': 'taqiqotlarga qabul qilindi',
+    '140': 'tadqiqotlar jarayonida',
+    '150': 'laboratoriya boshlig`iga yuborildi',
+    '155': 'lab boshlig`i laborantga qaytardi',
+    '157': 'Laboratoriyalar boshlig`iga yuborildi',
+    '159': 'Laboratoriyalar boshlig`i qaytardi',
+    '160': 'natijalar buyurtmachiga yuborildi',
+    '170': 'natijalarni buyurtmachi qabul qilmadi',
+    '180': 'natijalarni buyurtmachi qabul qildi',
+    '190': 'natijalar arxivga yuborildi',
+    '200': 'arxivda saqlanyapti',
   };
   void initState() {
     // TODO: implement initState
@@ -156,7 +157,14 @@ class _MyWidgetState extends State<OrdersPage> {
                             children: [
                               Text(order.skvajina.toString()),
                               Text(
-                                statusData[order.status.toString()].toString(),
+                                statusData[order.status.toString()]
+                                            .toString()
+                                            .length >
+                                        20
+                                    ? statusData[order.status.toString()]!
+                                        .substring(0, 20)
+                                    : statusData[order.status.toString()]
+                                        .toString(),
                                 style: const TextStyle(color: Colors.green),
                               )
                             ],
