@@ -51,11 +51,12 @@ class _MyWidgetState extends State<OrdersPage> {
         Center(
           child: Container(
             decoration: const BoxDecoration(
+              color: Color.fromARGB(244, 10, 224, 178),
               image: DecorationImage(
                 image: AssetImage("assets/background1.png"),
                 fit: BoxFit.cover,
               ),
-              color: Color.fromARGB(244, 10, 224, 178),
+              // color: Color.fromARGB(244, 10, 224, 178),
             ),
             child: const Column(
               children: [

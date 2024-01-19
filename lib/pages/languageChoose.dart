@@ -12,6 +12,7 @@ class LanguagePage extends StatefulWidget {
 class _LanguagePageState extends State<LanguagePage> {
   @override
   Future<void> initState() async {
+    super.initState();
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     if (localStorage.getString("lang") != null) {
       Navigator.pushReplacement(

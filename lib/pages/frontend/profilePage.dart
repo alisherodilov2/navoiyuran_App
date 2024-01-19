@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                     Text(
-                                      "ID (${user['id'].toString() ?? ''})",
+                                      "ID (${user['id'].toString()})",
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,

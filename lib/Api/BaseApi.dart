@@ -5,6 +5,7 @@ class BaseApi {
 class Auth extends BaseApi {
   static var login = '${BaseApi.api}/api/login';
   static var logout = '${BaseApi.api}/api/v1/logout';
+  static var dashboard = '${BaseApi.api}/api/v1/dashboard';
 }
 
 class SubApi extends BaseApi {

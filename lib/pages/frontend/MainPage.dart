@@ -4,6 +4,7 @@ import 'package:test/pages/frontend/Lab/labatories.dart';
 import 'package:test/pages/frontend/LeadingPage.dart';
 import 'package:test/pages/frontend/orderPage.dart';
 import 'package:test/pages/frontend/profilePage.dart';
+import 'package:test/pages/profile/myTasks.dart';
 
 class LeadingPage extends StatefulWidget {
   const LeadingPage({super.key});
@@ -39,10 +40,10 @@ class _LeadingPageState extends State<LeadingPage> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Color.fromARGB(244, 10, 224, 178),
+        // backgroundColor: Color.fromARGB(244, 10, 224, 178),
         body: pagemain,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 113, 232, 210),
+          // backgroundColor: Color.fromARGB(255, 113, 232, 210),
           onPressed: () {
             Navigator.pushNamed(context, 'qr_code');
           },

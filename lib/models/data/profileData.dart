@@ -4,26 +4,7 @@ var profileData = [
   {
     'icon': Icons.auto_awesome_motion,
     'title': "Meni topshiriqlarim",
-    "route": '/new',
-  },
-  {
-    'icon': Icons.check_box_outlined,
-    'title': "Meni topshiriqlarim",
-    "route": '/new',
-  },
-  {
-    'icon': Icons.notifications,
-    'title': "Ogohlantirishlar",
-    "route": '/new',
-  },
-  {
-    'icon': Icons.bar_chart,
-    'title': "Statistika",
-    "route": '/new',
-  },
-  {
-    'icon': Icons.assignment_ind,
-    'title': "Mening ma’lumotlarim",
+    "route": 'myTasks',
   },
   {
     'icon': Icons.assignment_ind,

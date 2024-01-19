@@ -171,12 +171,12 @@ class _LoginPageState extends State<LoginPage> {
                       height: 50,
                       child: Center(
                         child: Padding(
-                          padding: EdgeInsets.all(6),
+                          padding: const EdgeInsets.all(6),
                           child: isLoading
-                              ? CircularProgressIndicator(
+                              ? const CircularProgressIndicator(
                                   color: Colors.white,
                                 )
-                              : Text(
+                              : const Text(
                                   "Kirish",
                                   style: TextStyle(
                                     color: Colors.white,

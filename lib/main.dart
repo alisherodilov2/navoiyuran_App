@@ -7,6 +7,7 @@ import 'package:test/pages/frontend/qrCodeScanner.dart';
 import 'package:test/pages/languageChoose.dart';
 import 'package:test/pages/login.dart';
 import 'package:test/pages/passwordPage.dart';
+import 'package:test/pages/profile/myTasks.dart';
 import 'package:test/pages/settings/settingsPage.dart';
 
 void main() {
@@ -69,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'password_page': (context) => PasswordPage(),
         'qr_code': (context) => const QRViewExample(),
         'settings': (context) => const settingsPage(),
+        'myTasks': (context) => const myTasks(),
       },
     );
   }
