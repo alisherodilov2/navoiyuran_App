@@ -83,10 +83,8 @@ class _QrCodeShowState extends State<QrCodeShow> {
                                       Text(
                                         "Konomi:",
                                       ),
-                                      Text(
-                                        qrcode.sampleGroup!.order!.area!.name
-                                            .toString(),
-                                      )
+                                      Text(qrcode.sampleGroup!.order!.area
+                                          .toString())
                                     ],
                                   ),
                                   Row(
@@ -94,7 +92,7 @@ class _QrCodeShowState extends State<QrCodeShow> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text("Analiz turlari:"),
-                                      Text(qrcode.sampleGroup!.analiz!.name
+                                      Text(qrcode.sampleGroup!.analiz
                                           .toString()),
                                     ],
                                   )
@@ -141,8 +139,7 @@ class _QrCodeShowState extends State<QrCodeShow> {
                                         "Analiz Turi:",
                                       ),
                                       Text(
-                                        qrcode.sampleGroup!.analizType
-                                            .toString(),
+                                        qrcode.sampleGroup!.analiz.toString(),
                                       )
                                     ],
                                   ),

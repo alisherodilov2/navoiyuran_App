@@ -582,7 +582,9 @@ class _LeadingPageState extends State<LeadingPageMain> {
           );
         }
         return const Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 59, 212, 184),
+          ),
         );
       },
     );

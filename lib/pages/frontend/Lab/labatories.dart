@@ -191,7 +191,9 @@ class _LabatoriesState extends State<Labatories> {
                     );
                   }
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Color.fromARGB(255, 59, 212, 184),
+                    ),
                   );
                 },
               ),

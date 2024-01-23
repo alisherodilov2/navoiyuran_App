@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test/models/orderModels.dart';
 import 'package:test/pages/frontend/Lab/labatories.dart';
-import 'package:test/pages/frontend/LeadingPage.dart';
+import 'package:test/pages/frontend/dashboardPage.dart';
 import 'package:test/pages/frontend/orderPage.dart';
 import 'package:test/pages/frontend/profilePage.dart';
 import 'package:test/pages/profile/myTasks.dart';
@@ -43,6 +43,7 @@ class _LeadingPageState extends State<LeadingPage> {
         // backgroundColor: Color.fromARGB(244, 10, 224, 178),
         body: pagemain,
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Color.fromARGB(255, 59, 212, 184),
           // backgroundColor: Color.fromARGB(255, 113, 232, 210),
           onPressed: () {
             Navigator.pushNamed(context, 'qr_code');
@@ -56,6 +57,7 @@ class _LeadingPageState extends State<LeadingPage> {
           child: BottomAppBar(
             //bottom navigation bar on scaffold
             color: Colors.white,
+
             shape: const CircularNotchedRectangle(), //shape of notch
             notchMargin: 6,
             padding: const EdgeInsets.symmetric(vertical: 10),

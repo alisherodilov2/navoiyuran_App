@@ -183,7 +183,9 @@ class _MyWidgetState extends State<OrdersPage> {
                 );
               }
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 59, 212, 184),
+                ),
               );
             },
           ),

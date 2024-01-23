@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test/pages/frontend/LeadingPage.dart';
+import 'package:test/pages/frontend/dashboardPage.dart';
 
 import 'package:test/pages/frontend/MainPage.dart';
 import 'package:test/pages/frontend/qrCodeScanner.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Navoiyuran LAB',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
