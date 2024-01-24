@@ -23,45 +23,11 @@ class _LabatoriesState extends State<Labatories> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Tahlilar",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
         Column(
           children: [
             Container(
               color: Colors.white,
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height - 90,
               child: FutureBuilder(
                 future: fetchLab(),
                 builder: (context, snapshot) {
@@ -173,9 +139,6 @@ class _LabatoriesState extends State<Labatories> {
                                       ],
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
                                 ),
                               ],
                             ),

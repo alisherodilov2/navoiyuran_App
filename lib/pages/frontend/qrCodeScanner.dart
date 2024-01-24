@@ -15,6 +15,13 @@ class QRViewExample extends StatefulWidget {
 }
 
 class _QRViewExampleState extends State<QRViewExample> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -29,8 +36,8 @@ class _QRViewExampleState extends State<QRViewExample> {
   }
 
   void checkString(String param) {
-    if (param.contains("${BaseApi.api}" + '/samplePart')) {
-      var id = param.replaceAll("${BaseApi.api}" + '/samplePart/', '');
+    if (param.contains("${BaseApi.api}" '/samplePart')) {
+      var id = param.replaceAll("${BaseApi.api}" '/samplePart/', '');
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -46,6 +53,14 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+      if (Platform.isAndroid) {
+        controller!.resumeCamera();
+      }
+    }
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -156,15 +171,37 @@ class _QRViewExampleState extends State<QRViewExample> {
     );
   }
 
+  bool qrCodeProcessed = false;
+
   void _onQRViewCreated(QRViewController controller) {
     setState(() {
       this.controller = controller;
     });
+
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
-        print(result!.code.toString());
-        checkString(result!.code.toString());
+        print(result!.code);
+
+        if (qrCodeProcessed ||
+            !result!.code!.contains("${BaseApi.api}/samplePart")) {
+          print('not included');
+          return;
+        }
+
+        qrCodeProcessed = true;
+        var id = result!.code?.replaceFirst("${BaseApi.api}/samplePart/", '');
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => QrCodeShow(data: id),
+          ),
+        ).then((_) {
+          // Reset the flag and resume scanning when returning from QrCodeShow
+          qrCodeProcessed = false;
+          controller.resumeCamera();
+        });
       });
     });
   }

@@ -1,9 +1,8 @@
-import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:test/layouts/barchart.dart';
+
 import 'package:test/models/dashboardModel.dart';
 
 class LeadingPageMain extends StatefulWidget {
@@ -39,7 +38,7 @@ class _LeadingPageState extends State<LeadingPageMain> {
       future: fetchDashboardData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          Dashboard? dashboard = snapshot!.data as Dashboard;
+          Dashboard? dashboard = snapshot.data as Dashboard;
           return Container(
             decoration: const BoxDecoration(
               image: DecorationImage(

@@ -194,7 +194,7 @@ class _QrCodeShowState extends State<QrCodeShow> {
                   );
                 }
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: Center(child: CircularProgressIndicator()),
                 );
               },
             ),
