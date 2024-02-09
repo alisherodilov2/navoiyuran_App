@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:test/models/orderModels.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/pages/frontend/Lab/labatories.dart';
 import 'package:test/pages/frontend/dashboardPage.dart';
 import 'package:test/pages/frontend/orderPage.dart';
 import 'package:test/pages/frontend/profilePage.dart';
-import 'package:test/pages/profile/myTasks.dart';
+import 'package:test/pages/permissions/permissions.dart';
 
 class LeadingPage extends StatefulWidget {
   const LeadingPage({super.key});
@@ -14,7 +16,21 @@ class LeadingPage extends StatefulWidget {
 }
 
 class _LeadingPageState extends State<LeadingPage> {
-  late Future<List<Orders>> fetchOrder;
+  @override
+  void initState() {
+    super.initState();
+    getRole();
+  }
+
+  late String roleMain;
+  Future<void> getRole() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var role = localStorage.getString('role');
+    setState(() {
+      roleMain = role!;
+    });
+    // Check if 'roles' property exists in userMap
+  }
 
   late List pages = [
     LeadingPageMain(),
@@ -22,9 +38,11 @@ class _LeadingPageState extends State<LeadingPage> {
     Labatories(),
     OrdersPage(),
   ];
+
   late dynamic pagemain = pages[0];
   late int selectedIndex = 0;
   void changePage(page) {
+    print('working');
     setState(() {
       pagemain = pages[page];
     });
@@ -40,16 +58,35 @@ class _LeadingPageState extends State<LeadingPage> {
         ),
       ),
       child: Scaffold(
+        appBar: AppBar(),
+        drawer: Drawer(
+          child: ListView(
+            children: permissions[roleMain]?.map((e) {
+                  return Container(
+                    padding: EdgeInsets.all(12),
+                    child: Row(children: [
+                      Icon(e['icon'] as IconData),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Text(e['title'].toString())
+                    ]),
+                  );
+                }).toList() ??
+                [],
+          ),
+        ),
         // backgroundColor: Color.fromARGB(244, 10, 224, 178),
         body: pagemain,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 59, 212, 184),
-          // backgroundColor: Color.fromARGB(255, 113, 232, 210),
           onPressed: () {
             Navigator.pushNamed(context, 'qr_code');
           },
-          child: const Icon(Icons.qr_code_2_outlined), //icon inside button
+          child: Icon(Icons.qr_code_2_outlined),
+          shape: CircleBorder(),
         ),
+
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: ClipRRect(
           // ignore: prefer_const_constructors

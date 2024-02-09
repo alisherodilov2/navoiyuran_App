@@ -149,7 +149,8 @@ class _LoginPageState extends State<LoginPage> {
                             data['user'],
                           ),
                         );
-                        print(localStorage.getString('users'));
+                        print(data['roles']);
+                        localStorage.setString('role', data['roles']);
                         Navigator.pushReplacementNamed(
                             context, 'password_page');
                         setState(() {

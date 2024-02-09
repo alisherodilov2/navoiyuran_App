@@ -95,13 +95,15 @@ class Orders {
 class Mine {
   int? id;
   String? name;
+  String? kril;
+  String? ru;
   String? status;
   String? startTime;
   String? endTime;
   String? describtion;
   String? regionId;
   String? districtId;
-  Null? customerId;
+  String? customerId;
   String? createdAt;
   String? updatedAt;
   Null? deletedAt;
@@ -109,6 +111,8 @@ class Mine {
   Mine(
       {this.id,
       this.name,
+      this.kril,
+      this.ru,
       this.status,
       this.startTime,
       this.endTime,
@@ -123,6 +127,8 @@ class Mine {
   Mine.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    kril = json['kril'];
+    ru = json['ru'];
     status = json['status'];
     startTime = json['start_time'];
     endTime = json['end_time'];
@@ -139,6 +145,8 @@ class Mine {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
+    data['kril'] = this.kril;
+    data['ru'] = this.ru;
     data['status'] = this.status;
     data['start_time'] = this.startTime;
     data['end_time'] = this.endTime;

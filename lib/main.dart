@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test/pages/frontend/dashboardPage.dart';
-
 import 'package:test/pages/frontend/MainPage.dart';
-import 'package:test/pages/frontend/qrCodeScanner.dart';
-import 'package:test/pages/languageChoose.dart';
 import 'package:test/pages/login.dart';
 import 'package:test/pages/passwordPage.dart';
-import 'package:test/pages/profile/myTasks.dart';
+import 'package:test/pages/roles/dispatcher.dart';
 import 'package:test/pages/settings/settingsPage.dart';
 
 void main() {
@@ -63,15 +59,20 @@ class _MyHomePageState extends State<MyHomePage> {
       debugShowCheckedModeBanner: false,
       initialRoute: isAuth ? 'password_page' : 'login_screen',
       routes: {
-        'main_homePage': (context) => const LeadingPageMain(),
-        'lang_scren': (context) => const LanguagePage(),
-        'login_screen': (context) => const LoginPage(),
         'home_screen': (context) => const LeadingPage(),
-        'password_page': (context) => PasswordPage(),
-        'qr_code': (context) => const QRViewExample(),
+        'dispatcher': (context) => const Dispatcher(),
         'settings': (context) => const settingsPage(),
-        'myTasks': (context) => const myTasks(),
+        'login_screen': (context) => const LoginPage(),
+        'password_page': (context) => PasswordPage(),
       },
+      // routes: {
+
+      //
+
+      //   'qr_code': (context) => const QRViewExample(),
+
+      //   'myTasks': (context) => const myTasks(),
+      // },
     );
   }
 }

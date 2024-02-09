@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/models/dashboardModel.dart';
 
 class LeadingPageMain extends StatefulWidget {
@@ -17,6 +17,7 @@ class _LeadingPageState extends State<LeadingPageMain> {
   @override
   void initState() {
     fetchDashboardData = fetchDashboard();
+
     super.initState();
   }
 
@@ -50,7 +51,7 @@ class _LeadingPageState extends State<LeadingPageMain> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -96,20 +97,6 @@ class _LeadingPageState extends State<LeadingPageMain> {
                                   titlesData: FlTitlesData(
                                     show: false,
                                     topTitles: SideTitles(),
-                                    // bottomTitles: SideTitles(
-                                    //   showTitles: true,
-                                    //   reservedSize: 20,
-                                    //   getTitles: (value) {
-                                    //     if (value >= 0 &&
-                                    //         value < dashboard.lab!.length) {
-                                    //       return dashboard
-                                    //           .lab![value.toInt()].name
-                                    //           .toString();
-                                    //     }
-                                    //     return '';
-                                    //   },
-                                    //   margin: 10,
-                                    // ),
                                   ),
                                   borderData: FlBorderData(
                                     show: false,
@@ -277,7 +264,7 @@ class _LeadingPageState extends State<LeadingPageMain> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(15),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -369,7 +356,7 @@ class _LeadingPageState extends State<LeadingPageMain> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(15),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
