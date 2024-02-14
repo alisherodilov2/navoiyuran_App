@@ -14,7 +14,7 @@ class PasswordPage extends StatefulWidget {
 }
 
 class _PasswordPageState extends State<PasswordPage> {
-  TextEditingController pinCode = TextEditingController();
+   TextEditingController pinCode = TextEditingController();
 
   FocusNode focusNode = FocusNode();
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/pages/frontend/MainPage.dart';
+import 'package:test/pages/frontend/qrCodeScanner.dart';
 import 'package:test/pages/login.dart';
 import 'package:test/pages/passwordPage.dart';
+import 'package:test/pages/role/ActivePage.dart';
 import 'package:test/pages/roles/dispatcher.dart';
 import 'package:test/pages/settings/settingsPage.dart';
 
@@ -64,15 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
         'settings': (context) => const settingsPage(),
         'login_screen': (context) => const LoginPage(),
         'password_page': (context) => PasswordPage(),
+        'active_qrcode': (context) => const ActivatePage(),
+        'qr_code': (context) => const QRViewExample(),
       },
-      // routes: {
-
-      //
-
-      //   'qr_code': (context) => const QRViewExample(),
-
-      //   'myTasks': (context) => const myTasks(),
-      // },
     );
   }
 }

@@ -20,17 +20,26 @@ class _LeadingPageState extends State<LeadingPage> {
   void initState() {
     super.initState();
     getRole();
+    print("working");
   }
 
-  late String roleMain;
-  Future<void> getRole() async {
+  late Future<String?> roleMain = getRole();
+  Future<String?> getRole() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var role = localStorage.getString('role');
-    setState(() {
-      roleMain = role!;
-    });
-    // Check if 'roles' property exists in userMap
+    return role;
   }
+
+  // late String roleMain;
+  // Future<void> getRole() async {
+  //   SharedPreferences localStorage = await SharedPreferences.getInstance();
+  //   var role = localStorage.getString('role');
+  //   print(roleMain);
+  //   setState(() {
+  //     roleMain = role!;
+  //   });
+  //   // Check if 'roles' property exists in userMap
+  // }
 
   late List pages = [
     LeadingPageMain(),
@@ -60,26 +69,69 @@ class _LeadingPageState extends State<LeadingPage> {
       child: Scaffold(
         appBar: AppBar(),
         drawer: Drawer(
-          child: ListView(
-            children: permissions[roleMain]?.map((e) {
-                  return Container(
-                    padding: EdgeInsets.all(12),
-                    child: Row(children: [
-                      Icon(e['icon'] as IconData),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      Text(e['title'].toString())
-                    ]),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.white, Color.fromARGB(255, 87, 245, 166)],
+              ),
+            ),
+            child: FutureBuilder<String?>(
+              future: roleMain,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  String? userRole = snapshot.data;
+                  return ListView(
+                    children: permissions[userRole]?.map((e) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, e['route'].toString());
+                            },
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                top: 30,
+                                left: 25,
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    e['icon'] as IconData,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                  Text(
+                                    e['title'].toString(),
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList() ??
+                        [
+                          Text('No permissions available for the user role'),
+                        ],
                   );
-                }).toList() ??
-                [],
+                }
+              },
+            ),
           ),
         ),
         // backgroundColor: Color.fromARGB(244, 10, 224, 178),
         body: pagemain,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 59, 212, 184),
+          backgroundColor: Color.fromARGB(255, 91, 236, 210),
           onPressed: () {
             Navigator.pushNamed(context, 'qr_code');
           },

@@ -15,3 +15,7 @@ class SubApi extends BaseApi {
   static var labaratory = '${BaseApi.api}/api/labaratory';
   static var orderShow = '${BaseApi.api}/api/samplePart/';
 }
+
+class Dispatcher extends BaseApi {
+  static var qrPageLoading = '${BaseApi.api}/api/dispatcher/active/';
+}
