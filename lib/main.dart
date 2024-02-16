@@ -4,7 +4,9 @@ import 'package:test/pages/frontend/MainPage.dart';
 import 'package:test/pages/frontend/qrCodeScanner.dart';
 import 'package:test/pages/login.dart';
 import 'package:test/pages/passwordPage.dart';
-import 'package:test/pages/role/ActivePage.dart';
+import 'package:test/pages/role/Dispatcher/ActivePage.dart';
+import 'package:test/pages/role/Dispatcher/DispatcherOrder.dart';
+
 import 'package:test/pages/roles/dispatcher.dart';
 import 'package:test/pages/settings/settingsPage.dart';
 
@@ -68,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'password_page': (context) => PasswordPage(),
         'active_qrcode': (context) => const ActivatePage(),
         'qr_code': (context) => const QRViewExample(),
+        'dispatcher_orders': (context) => const DispatcherOrder(),
       },
     );
   }

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:test/Api/BaseApi.dart';
-import 'package:test/pages/role/ActivePageShow.dart';
+import 'package:test/pages/role/Dispatcher/ActivePageShow.dart';
 
 class ActivatePage extends StatefulWidget {
   const ActivatePage({Key? key}) : super(key: key);

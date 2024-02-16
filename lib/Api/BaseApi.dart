@@ -19,4 +19,5 @@ class SubApi extends BaseApi {
 class Dispatcher extends BaseApi {
   static var qrPageLoading = '${BaseApi.api}/api/dispatcher/active/';
   static var qrConfirmation = '${BaseApi.api}/api/dispatcher/active/confirm/';
+  static var orderDispatcher = '${BaseApi.api}/api/dispatcher/orders';
 }
