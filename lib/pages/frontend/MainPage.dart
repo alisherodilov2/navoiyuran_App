@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,10 +41,10 @@ class _LeadingPageState extends State<LeadingPage> {
   // }
 
   late List pages = [
-    LeadingPageMain(),
-    ProfilePage(),
-    Labatories(),
-    OrdersPage(),
+    const LeadingPageMain(),
+    const ProfilePage(),
+    const Labatories(),
+    const OrdersPage(),
   ];
 
   late dynamic pagemain = pages[0];
@@ -70,7 +69,7 @@ class _LeadingPageState extends State<LeadingPage> {
         appBar: AppBar(),
         drawer: Drawer(
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -81,7 +80,7 @@ class _LeadingPageState extends State<LeadingPage> {
               future: roleMain,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
@@ -94,8 +93,8 @@ class _LeadingPageState extends State<LeadingPage> {
                                   context, e['route'].toString());
                             },
                             child: Container(
-                              padding: EdgeInsets.only(
-                                top: 30,
+                              padding: const EdgeInsets.only(
+                                top: 35,
                                 left: 25,
                               ),
                               child: Row(
@@ -104,14 +103,14 @@ class _LeadingPageState extends State<LeadingPage> {
                                     e['icon'] as IconData,
                                     color: Colors.black,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 12,
                                   ),
                                   Text(
                                     e['title'].toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
-                                      fontSize: 18,
+                                      fontSize: 17,
                                     ),
                                   ),
                                 ],
@@ -120,7 +119,7 @@ class _LeadingPageState extends State<LeadingPage> {
                           );
                         }).toList() ??
                         [
-                          Text('No permissions available for the user role'),
+                          const Text('No permissions available for the user role'),
                         ],
                   );
                 }
@@ -131,12 +130,12 @@ class _LeadingPageState extends State<LeadingPage> {
         // backgroundColor: Color.fromARGB(244, 10, 224, 178),
         body: pagemain,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 91, 236, 210),
+          backgroundColor: const Color.fromARGB(255, 91, 236, 210),
           onPressed: () {
             Navigator.pushNamed(context, 'qr_code');
           },
-          child: Icon(Icons.qr_code_2_outlined),
-          shape: CircleBorder(),
+          child: const Icon(Icons.qr_code_2_outlined),
+          shape: const CircleBorder(),
         ),
 
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
