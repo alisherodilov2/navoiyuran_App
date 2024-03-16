@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/pages/frontend/Lab/labatories.dart';
@@ -26,6 +25,7 @@ class _LeadingPageState extends State<LeadingPage> {
   Future<String?> getRole() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var role = localStorage.getString('role');
+    print(role);
     return role;
   }
 
@@ -119,7 +119,8 @@ class _LeadingPageState extends State<LeadingPage> {
                           );
                         }).toList() ??
                         [
-                          const Text('No permissions available for the user role'),
+                          const Text(
+                              'No permissions available for the user role'),
                         ],
                   );
                 }

@@ -12,5 +12,12 @@ var permissions = {
       'route': 'dispatcher_orders',
       'icon': Icons.local_activity_rounded,
     }
+  ],
+  "labarant": [
+    {
+      'title': 'Namunani ishka qabul qilish',
+      'route': 'active_sample',
+      'icon': Icons.document_scanner
+    }
   ]
 };

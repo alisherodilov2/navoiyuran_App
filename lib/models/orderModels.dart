@@ -19,54 +19,52 @@ Future<List<Orders>> fetchOrders() async {
 
 class Orders {
   int? id;
-  Null? describtion;
-  String? status;
+  String? describtion;
+  String? status; // Changed to String
   String? skvajina;
-  String? samplesCount;
-  Null? reason;
+  String? samplesCount; // Changed to String
+  String? reason;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
   String? userId;
   String? mineId;
   String? placeTypeId;
-  Null? materialTypeId;
+  String? materialTypeId;
   String? someTypeId;
   Mine? mine;
 
-  Orders(
-      {this.id,
-      this.describtion,
-      this.status,
-      this.skvajina,
-      this.samplesCount,
-      this.reason,
-      this.createdAt,
-      this.updatedAt,
-      this.deletedAt,
-      this.userId,
-      this.mineId,
-      this.placeTypeId,
-      this.materialTypeId,
-      this.someTypeId,
-      this.mine});
+  Orders({
+    this.id,
+    this.describtion,
+    this.status,
+    this.skvajina,
+    this.samplesCount,
+    this.reason,
+    this.createdAt,
+    this.updatedAt,
+    this.userId,
+    this.mineId,
+    this.placeTypeId,
+    this.materialTypeId,
+    this.someTypeId,
+    this.mine,
+  });
 
   Orders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     describtion = json['describtion'];
-    status = json['status'];
+    status = json['status'].toString(); // Convert to String
     skvajina = json['skvajina'];
-    samplesCount = json['samples_count'];
+    samplesCount = json['samples_count'].toString(); // Convert to String
     reason = json['reason'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    deletedAt = json['deleted_at'];
-    userId = json['user_id'];
-    mineId = json['mine_id'];
-    placeTypeId = json['place_type_id'];
-    materialTypeId = json['material_type_id'];
-    someTypeId = json['some_type_id'];
-    mine = json['mine'] != null ? new Mine.fromJson(json['mine']) : null;
+    userId = json['user_id'].toString(); // Convert to String
+    mineId = json['mine_id'].toString(); // Convert to String
+    placeTypeId = json['place_type_id'].toString(); // Convert to String
+    materialTypeId = json['material_type_id'].toString(); // Convert to String
+    someTypeId = json['some_type_id'].toString(); // Convert to String
+    mine = json['mine'] != null ? Mine.fromJson(json['mine']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -79,7 +77,6 @@ class Orders {
     data['reason'] = this.reason;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['deleted_at'] = this.deletedAt;
     data['user_id'] = this.userId;
     data['mine_id'] = this.mineId;
     data['place_type_id'] = this.placeTypeId;

@@ -21,3 +21,7 @@ class Dispatcher extends BaseApi {
   static var qrConfirmation = '${BaseApi.api}/api/dispatcher/active/confirm/';
   static var orderDispatcher = '${BaseApi.api}/api/dispatcher/orders';
 }
+
+class Labatory extends BaseApi {
+  static var activeSample = '${BaseApi.api}/api/lab/samplePart/';
+}

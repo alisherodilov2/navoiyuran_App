@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test/pages/Labaratoriya/SampleActivate.dart';
 import 'package:test/pages/frontend/MainPage.dart';
 import 'package:test/pages/frontend/qrCodeScanner.dart';
 import 'package:test/pages/login.dart';
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       debugShowCheckedModeBanner: false,
       initialRoute: isAuth ? 'password_page' : 'login_screen',
       routes: {
-        'home_screen': (context) => const LeadingPage(),
+        'home_screen': (context) => const LeadingPage(),  
         'dispatcher': (context) => const Dispatcher(),
         'settings': (context) => const settingsPage(),
         'login_screen': (context) => const LoginPage(),
@@ -71,6 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
         'active_qrcode': (context) => const ActivatePage(),
         'qr_code': (context) => const QRViewExample(),
         'dispatcher_orders': (context) => const DispatcherOrder(),
+        // laborant
+        'active_sample': (context) => const LabaratoryActiveSample(),
       },
     );
   }
