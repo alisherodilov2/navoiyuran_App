@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test/layouts/alerts.dart';
 import 'package:test/models/labaratory/Labatoy.dart';
 
 class SampleActivated extends StatefulWidget {
@@ -10,15 +11,19 @@ class SampleActivated extends StatefulWidget {
 
 class _SampleActivatedState extends State<SampleActivated> {
   late Future<ActiveSample> fetchSampleNew;
-  @override
+  var isChecked = false;
+  var isLoading = false;
   void initState() {
     // TODO: implement initState
     setState(() {
+      print(widget.id);
       fetchSampleNew = fetchSampleActive(widget.id);
     });
+
     fetchSampleNew.then((value) => {
-          value.data.group.forEach((element) {
-            if (element.isCheck) {
+          print("salom"),
+          value.data!.group!.forEach((element) {
+            if (element.isCheck == true) {
               setState(() {
                 isChecked = true;
               });
@@ -28,7 +33,68 @@ class _SampleActivatedState extends State<SampleActivated> {
     super.initState();
   }
 
-  var isChecked = false;
+  void alert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Warning'),
+          content: const Text('Iltimos analiz turini tanlang'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // Close the dialog
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void alertSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Success'),
+          content: const Text('Namuna ishga qabul qilindi'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void alertNot(Param) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Success'),
+          content: Text(Param.toString()),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  var groupId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +124,13 @@ class _SampleActivatedState extends State<SampleActivated> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                const Text("No"),
+                                Text(sample.data!.no.toString())
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
                                 const Text("Buyurtma raqami"),
                                 Text(sample.data!.customId.toString() == 'null'
                                     ? sample.data!.orderId.toString()
@@ -68,7 +141,7 @@ class _SampleActivatedState extends State<SampleActivated> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text("Geologik raqami"),
-                                Text(sample.data!.geoNumber.toString())
+                                Text(sample.data!.geoNumber.toString() ?? '')
                               ],
                             ),
                             Row(
@@ -114,41 +187,88 @@ class _SampleActivatedState extends State<SampleActivated> {
                                   true, // Ensure the GridView doesn't try to expand infinitely
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 4,
+                                crossAxisCount: 5,
                                 crossAxisSpacing: 10.0,
                                 mainAxisSpacing: 10.0,
                               ),
                               itemCount: sample.data!.group!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 var group = sample.data!.group![index];
-
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: group.done ?? false
-                                        ? Colors.green
-                                        : Colors.grey,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      group.analiz.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w500,
+                                if (group.done.toString() == 'true') {
+                                  return GestureDetector(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.green,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          group.analiz.toString(),
+                                          style: const TextStyle(
+                                            fontSize: 10.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                } else {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        groupId = group.id;
+                                      });
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: groupId == group.id
+                                            ? const Color.fromARGB(
+                                                255, 223, 223, 223)
+                                            : Colors.grey,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          group.analiz.toString(),
+                                          style: const TextStyle(
+                                            fontSize: 10.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             isChecked
                                 ? Center(
                                     child: GestureDetector(
-                                      onTap: () {
-                                        print('salom');
+                                      onTap: () async {
+                                        if (groupId == null) {
+                                          alert();
+                                        } else {
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+                                          var data = await sendActive(
+                                              sample.data!.id, groupId);
+                                          if (data == 200) {
+                                            alertSuccess();
+                                            setState(() {
+                                              isLoading = false;
+                                            });
+                                          } else {
+                                            alertNot(
+                                                'Bu namuna ushbu analiz uchun tanlanmagan');
+                                            setState(() {
+                                              isLoading = false;
+                                            });
+                                          }
+                                        }
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -159,20 +279,24 @@ class _SampleActivatedState extends State<SampleActivated> {
                                         padding: const EdgeInsets.all(10),
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        child: const Center(
-                                          child: Text(
-                                            "QABUL QILISH",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
+                                        child: Center(
+                                          child: !isLoading
+                                              ? const Text(
+                                                  "QABUL QILISH",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              : const CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                ),
                                         ),
                                       ),
                                     ),
                                   )
-                                : SizedBox()
+                                : const SizedBox()
                           ],
                         ),
                       ),
@@ -183,7 +307,7 @@ class _SampleActivatedState extends State<SampleActivated> {
               if (snapshot.hasError) {
                 print(snapshot.error.toString());
                 return const Center(
-                  child: Text('Something went wrong!'),
+                  child: Text('Something went 123'),
                 );
               }
               return const Center(

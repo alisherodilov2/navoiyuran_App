@@ -24,4 +24,5 @@ class Dispatcher extends BaseApi {
 
 class Labatory extends BaseApi {
   static var activeSample = '${BaseApi.api}/api/lab/samplePart/';
+  static var activeSampleActive = '${BaseApi.api}/api/lab/samplePart/active/';
 }

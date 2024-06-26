@@ -70,15 +70,18 @@ class _ProfilePageState extends State<ProfilePage> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              Container(
+                              Center(
                                 child: Column(
                                   children: [
-                                    Text(
-                                      user['name'] ?? ' ',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 22,
+                                    Center(
+                                      child: Text(
+                                        user['name'] ?? ' ',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     Text(

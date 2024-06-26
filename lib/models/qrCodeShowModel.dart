@@ -12,6 +12,8 @@ Future<List<qrCodeShow>> fetchQrData(id) async {
     'Accept': 'application/json',
     'Authorization': 'Bearer $token',
   }, Uri.parse(SubApi.orderShow + id));
+  print(SubApi.orderShow + id);
+  print('working');
   return (jsonDecode(response.body) as List)
       .map((e) => qrCodeShow.fromJson(e))
       .toList();
@@ -19,13 +21,16 @@ Future<List<qrCodeShow>> fetchQrData(id) async {
 
 class qrCodeShow {
   int? samplePart;
+  String? geoNumber;
   SampleGroup? sampleGroup;
   String? createAt;
 
-  qrCodeShow({this.samplePart, this.sampleGroup, this.createAt});
+  qrCodeShow(
+      {this.samplePart, this.geoNumber, this.sampleGroup, this.createAt});
 
   qrCodeShow.fromJson(Map<String, dynamic> json) {
     samplePart = json['samplePart'];
+    geoNumber = json['geoNumber'];
     sampleGroup = json['sampleGroup'] != null
         ? new SampleGroup.fromJson(json['sampleGroup'])
         : null;
@@ -35,6 +40,7 @@ class qrCodeShow {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['samplePart'] = this.samplePart;
+    data['geoNumber'] = this.geoNumber;
     if (this.sampleGroup != null) {
       data['sampleGroup'] = this.sampleGroup!.toJson();
     }
