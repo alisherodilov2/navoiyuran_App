@@ -72,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
         'active_qrcode': (context) => const ActivatePage(),
         'qr_code': (context) => const QRViewExample(),
         'dispatcher_orders': (context) => const DispatcherOrder(),
-        // laborant
         'active_sample': (context) => const LabaratoryActiveSample(),
       },
     );
