@@ -147,8 +147,12 @@ class _MyWidgetState extends State<OrdersPage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "${order.mine!.name} (${order.id.toString()})",
+                              Container(
+                                width: 100,
+                                child: Text(
+                                  "${order.mine!.name} (${order.id.toString()})",
+                                  overflow: TextOverflow.fade,
+                                ),
                               ),
                               Text(order.createdAt.toString())
                             ],

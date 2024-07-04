@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> isLogin() async {
     // ignore: unused_local_variable
     SharedPreferences localStorage = await SharedPreferences.getInstance();
+    print(localStorage.getString("token"));
     if (localStorage.getString("token") != null) {
       setState(() {
         isAuth = true;
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       debugShowCheckedModeBanner: false,
       initialRoute: isAuth ? 'password_page' : 'login_screen',
       routes: {
-        'home_screen': (context) => const LeadingPage(),  
+        'home_screen': (context) => const LeadingPage(),
         'dispatcher': (context) => const Dispatcher(),
         'settings': (context) => const settingsPage(),
         'login_screen': (context) => const LoginPage(),

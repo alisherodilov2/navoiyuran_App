@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:test/Api/BaseApi.dart';
 import 'package:test/layouts/alerts.dart';
 import 'package:test/models/labaratory/Labatoy.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SampleActivated extends StatefulWidget {
   final id;
@@ -296,7 +299,7 @@ class _SampleActivatedState extends State<SampleActivated> {
                                       ),
                                     ),
                                   )
-                                : const SizedBox()
+                                : const SizedBox(),
                           ],
                         ),
                       ),

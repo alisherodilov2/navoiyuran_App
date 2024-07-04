@@ -36,6 +36,7 @@ dependencies:
   flutter_staggered_grid_view: ^0.7.0
   flutter_pin_code_fields: ^1.1.0
   fl_chart: ^0.45.0
+  url_launcher: ^6.1.6
 
 
   # flutter_charts: ^0.5.2
