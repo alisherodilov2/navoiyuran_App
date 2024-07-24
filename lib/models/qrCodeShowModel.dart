@@ -126,6 +126,7 @@ class Order {
 }
 
 class Samples {
+  String? number;
   String? unicNumber;
   String? depthFrom;
   String? depthTo;
@@ -133,13 +134,15 @@ class Samples {
   String? weightFrom;
 
   Samples(
-      {this.unicNumber,
+      {this.number,
+      this.unicNumber,
       this.depthFrom,
       this.depthTo,
       this.power,
       this.weightFrom});
 
   Samples.fromJson(Map<String, dynamic> json) {
+    number = json['number'].toString();
     unicNumber = json['unic_number'];
     depthFrom = json['depth_from'];
     depthTo = json['depth_to'];
@@ -149,6 +152,7 @@ class Samples {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['number'] = this.number;
     data['unic_number'] = this.unicNumber;
     data['depth_from'] = this.depthFrom;
     data['depth_to'] = this.depthTo;

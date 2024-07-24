@@ -162,6 +162,7 @@ class _QrCodeShowState extends State<QrCodeShow> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Text(e.number.toString()),
                                     Text(e.unicNumber.toString()),
                                     Text(e.depthFrom.toString())
                                   ],
